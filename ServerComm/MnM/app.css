@@ -1,0 +1,48 @@
+.row {
+    display: table-row;
+}
+
+.key {
+    font-weight: bold;
+    width: 20rem;
+    display: table-cell;
+}
+
+.value {
+    width: 40rem;
+    display: table-cell;
+}
+
+span {
+    font-size: 2rem;
+}
+
+input[type=text].input-field {
+    width: 90%;    
+    font-size: 2rem;
+}
+
+nav {
+    background-color: #276696;
+    border: 0 none;
+    border-bottom: 4px solid;
+    border-image: linear-gradient( 90deg, #FF0000 0%, #FF7F00 16.6%, #FFFF00 33.3%, #00FF00 49.8%, #0000FF 66.4%, #4B0082 83.4%, #8B00FF 100%) 0 0 4 0 repeat;
+    color: #FFFFFF;
+    display: block;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+
+body {
+    padding: 1rem;
+    padding-top: 6rem;
+}
+
+#app {
+    padding: 1rem;
+}
