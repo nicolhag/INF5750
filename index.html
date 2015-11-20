@@ -38,7 +38,7 @@
 						<label for="name" class="">Commodity name</label>
 						<input id="name" size="35" type="text" ng-model="name" ng-disabled="edit" placeholder="Commodity name">
 						<label for="quantity" class="">Quantity</label>
-						<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
+						<input id="quantity" type="number" ng-model="quantity" ng-disabled="edit" value="1">			
 					</form>
 					
 				</section>
@@ -48,7 +48,7 @@
 					<br><br>
 					<hr>
 			
-				<button class="btn btn-success" ng-disabled="error || incomplete">
+				<button id="send-order-button" class="btn btn-success" ng-disabled="error || incomplete">
 						<span class="glyphicon glyphicon-save"></span>  Send order
 				</button>
 		
@@ -68,9 +68,10 @@
 </html>
 
 	<script type="text/javascript">
-		console.log("hei");
+		//Function to add new form element when + is clicked. 
 		$("#add-form-button").click(function(){
-			console.log("hei");
-			$("#bulk-order-list").append($("#commodity-form").clone());
+			newForm = $("#commodity-form").clone(); //cloning first form
+			newForm.find("input").val(""); //removing input text
+			$("#bulk-order-list").append(newForm); //appending on the end of list
 		});
 	</script>
