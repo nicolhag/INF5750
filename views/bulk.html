@@ -2,6 +2,24 @@
   <div class="container">
 
     <h2>Order multiple commodities</h2>
+		
+		<form class="commodity-form">
+			
+			<label for="name" class="">Commodity name</label>
+			
+			<input id="name" size="35" type="text" ng-model="fName" ng-disabled="!edit" placeholder="Commodity name">
+			
+			<label for="quantity" class="">Quantity</label>
+	
+			<input id="quantity" type="number" ng-model="fName" ng-disabled="!edit" value="1">			
+			
+
+			
+		</form>
+		
+		<button class="btn btn-success" ng-disabled="error || incomplete">
+				<span class="glyphicon glyphicon-save"></span>  Send order
+		</button>
 	
   </div>
 </div>

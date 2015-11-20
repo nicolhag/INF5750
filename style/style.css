@@ -1,0 +1,12 @@
+.commodity-form {
+	background-color: #377CA8;
+	padding: 15px;
+}
+
+.commodity-form label {
+	color: white;
+}
+
+.commodity-form input {
+	margin-right: 10px;
+}
