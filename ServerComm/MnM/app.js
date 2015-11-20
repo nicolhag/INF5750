@@ -6,4 +6,6 @@ var requestOptions = {
 };
 
 fetch('manifest.webapp', requestOptions)
-    .then(testServer);
+    .then(parseJson)
+    .then(getBaseUrlFromManifest)
+    .then(sendCommodityOrder);
