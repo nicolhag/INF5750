@@ -43,5 +43,3 @@ local.properties
 #OSX DS_Store
 *.DS_Store
 
-#Manifest
-manifest.webapp
