@@ -17,10 +17,18 @@
   <body ng-app="CommodityOrder">
 
     <div class="header">
-      
+      <div id="dhis-header">
+				<div class="container">
+					<a href="index.html">
+						<img id="dhis2-logo" src="style/dhis2_logo.png" alt="dhis2 logo">
+					</a>
+					<h1 id="title-header">Commodity order</h1>
+				</div>
+			</div>
+			
 			<div class="container">
-        <a href="/#/">
-          <h1><i class="fa fa-arrow-circle-o-left"></i> DHIS2 Commodity order</h1>
+        <a href="index.html">
+          
         </a>
       </div>
 	  
@@ -43,15 +51,15 @@
 					
 				</section>
 					<button id="add-form-button" class="btn btn-success" ng-disabled="error || incomplete">
-						<i class="fa fa-plus-square"></i>
+						<i class="fa fa-plus-square"></i> Add element
 					</button>
 					<br><br>
 					<hr>
 			
-				<button id="send-order-button" class="btn btn-success" ng-disabled="error || incomplete">
-						<span class="glyphicon glyphicon-save"></span>  Send order
-				</button>
-		
+					<button id="send-order-button" class="btn btn-success" ng-disabled="error || incomplete">
+							<i class="fa fa-paper-plane-o"></i> Send order
+					</button>
+
 			</div>
 			
 		</main>

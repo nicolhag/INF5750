@@ -15,9 +15,38 @@
 #bulk-order-list {
 	
 	margin-top: 20px;
-	padding: 2px 15px 30px 15px;
+	padding: 2px 0 30px 0;
+}
+
+#bulk-order-list h2 {
+	margin-top: 20px;
+	margin-bottom: 40px;
 }
 
 #add-form-button {
 	float: right;
+}
+
+#send-order-button {
+	float: right;
+	width: 200px;
+}
+
+#dhis-header {
+	background-color: #215E8C;
+	width: 100%;
+}
+
+#dhis2-logo {
+
+}
+
+#title-header {
+	
+	display: inline-block;
+	margin: 0 0 0 20px;
+	padding: 10px 0 0 0;
+	height: 67px;
+	font-size: 30px;
+	color: white;
 }
