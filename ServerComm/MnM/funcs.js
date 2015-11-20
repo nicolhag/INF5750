@@ -10,8 +10,8 @@ function sendCommodityOrder(){
         dataType: 'xml',
         contentType: 'application/xml',
         processData: false,
-        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Mortality data reporting</subject><text>Have you reported data for the Mortality data set for January 2014?</text><users><user id="SzPPs3sGSd6" /></users></message>',
-        success: function (data) {
+        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order</subject><text>Ordering stocks on the following commodities:</text><users><user id="DXyJmlo9rge" /></users></message>',
+        success: function (data){
             $("#messageSent").html(JSON.stringify(data));
         },
         error: function(data){
