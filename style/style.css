@@ -1,6 +1,7 @@
 .commodity-form {
 	background-color: #377CA8;
-	padding: 15px;
+	padding: 20px;
+	margin-bottom: 20px;
 }
 
 .commodity-form label {
@@ -9,4 +10,10 @@
 
 .commodity-form input {
 	margin-right: 10px;
+}
+
+#bulk-order-list {
+	border: 1px solid #377CA8;
+	margin-top: 20px;
+	padding: 2px 15px 30px 15px;
 }

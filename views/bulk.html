@@ -1,22 +1,24 @@
 <div class="main">
   <div class="container">
 
-    <h2>Order multiple commodities</h2>
-		
-		<form class="commodity-form">
+		<section id="bulk-order-list">
+			<h2>Order multiple commodities</h2>
 			
-			<label for="name" class="">Commodity name</label>
+			<form class="commodity-form">
+				<label for="name" class="">Commodity name</label>
+				<input id="name" size="35" type="text" ng-model="name" ng-disabled="!edit" placeholder="Commodity name">
+				<label for="quantity" class="">Quantity</label>
+				<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
+			</form>
 			
-			<input id="name" size="35" type="text" ng-model="fName" ng-disabled="!edit" placeholder="Commodity name">
+			<form class="commodity-form">
+				<label for="name" class="">Commodity name</label>
+				<input id="name" size="35" type="text" ng-model="name" ng-disabled="!edit" placeholder="Commodity name">
+				<label for="quantity" class="">Quantity</label>
+				<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
+			</form>
 			
-			<label for="quantity" class="">Quantity</label>
-	
-			<input id="quantity" type="number" ng-model="fName" ng-disabled="!edit" value="1">			
-			
-
-			
-		</form>
-		
+		</section>
 		<button class="btn btn-success" ng-disabled="error || incomplete">
 				<span class="glyphicon glyphicon-save"></span>  Send order
 		</button>
