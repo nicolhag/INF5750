@@ -1,7 +1,7 @@
 .commodity-form {
 	background-color: #377CA8;
 	padding: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .commodity-form label {
@@ -13,7 +13,11 @@
 }
 
 #bulk-order-list {
-	border: 1px solid #377CA8;
+	
 	margin-top: 20px;
 	padding: 2px 15px 30px 15px;
+}
+
+#add-form-button {
+	float: right;
 }

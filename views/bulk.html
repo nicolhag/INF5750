@@ -18,10 +18,29 @@
 				<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
 			</form>
 			
+			<form class="commodity-form">
+				<label for="name" class="">Commodity name</label>
+				<input id="name" size="35" type="text" ng-model="name" ng-disabled="!edit" placeholder="Commodity name">
+				<label for="quantity" class="">Quantity</label>
+				<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
+			</form>
+			
+			<button id="add-form-button" class="btn btn-success" ng-disabled="error || incomplete">
+				<i class="fa fa-plus-square"></i>
+			</button>
+			<br><br>
+			<hr>
 		</section>
 		<button class="btn btn-success" ng-disabled="error || incomplete">
 				<span class="glyphicon glyphicon-save"></span>  Send order
 		</button>
-	
+		
   </div>
 </div>
+
+<script type="text/javascript">
+	console.log("hei");
+	$("#add-form-button").click(function(){
+		console.log("hei");
+	});
+</script>
