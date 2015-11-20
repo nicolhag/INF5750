@@ -18,18 +18,43 @@
 
     <div class="header">
       
-	  <div class="container">
+			<div class="container">
         <a href="/#/">
           <h1><i class="fa fa-arrow-circle-o-left"></i> DHIS2 Commodity order</h1>
         </a>
       </div>
 	  
-	  <div ng-view></div>
+			<!-- <div ng-view></div> -->
       
     </div>
+		<main>
+			
+			<div class="container">
 
-
-
+				<section id="bulk-order-list">
+					<h2>Order multiple commodities</h2>
+					
+					<form id="commodity-form" class="commodity-form">
+						<label for="name" class="">Commodity name</label>
+						<input id="name" size="35" type="text" ng-model="name" ng-disabled="edit" placeholder="Commodity name">
+						<label for="quantity" class="">Quantity</label>
+						<input id="quantity" type="number" ng-model="quantity" ng-disabled="!edit" value="1">			
+					</form>
+					
+				</section>
+					<button id="add-form-button" class="btn btn-success" ng-disabled="error || incomplete">
+						<i class="fa fa-plus-square"></i>
+					</button>
+					<br><br>
+					<hr>
+			
+				<button class="btn btn-success" ng-disabled="error || incomplete">
+						<span class="glyphicon glyphicon-save"></span>  Send order
+				</button>
+		
+			</div>
+			
+		</main>
     <!-- Modules -->
     <script src="js/app.js"></script>
 
@@ -41,3 +66,11 @@
 
   </body>
 </html>
+
+	<script type="text/javascript">
+		console.log("hei");
+		$("#add-form-button").click(function(){
+			console.log("hei");
+			$("#bulk-order-list").append($("#commodity-form").clone());
+		});
+	</script>
