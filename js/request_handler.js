@@ -1,4 +1,5 @@
 var sendID = "qlEhuAA77gc";
+var usersToSend = [];
 
 function sendCommodityOrderToOrgUnit(dataToSend){
     $.ajax({
@@ -40,9 +41,10 @@ function sendCommodityOrderToUsers(dataToSend){
         data: JSON.stringify({
             "subject": "Commodity order submitted",
             "text": "Ordering stocks on the following commodities:\n" + dataToSend,
-            "users": [{"id": sendID}]
+            "users": usersToSend
         })
     });
+    console.log("test");
 }
 
 function getListOfAllUsers(){

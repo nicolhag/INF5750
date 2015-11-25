@@ -1,12 +1,10 @@
-function getOwnOrgUnit() {
-    return $.ajax({
-        url: "/api/me",
-        type: 'GET',
-        dataType: 'json',
-        contentType: 'application/json',
-        processData: false,
-    });
-}
+var promise = $.ajax({
+    url: "/api/me",
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+});
+
 
 var sendToOrgUnit = true;
 
@@ -33,10 +31,28 @@ function getParentOrgId(orgId) {
         }
     });
 }
-var promise = getOwnOrgUnit();
-promise.success(function (data) {
+
+function getUsersInParent(orgId) {
+    return $.ajax({
+        url: "/api/users?filter=organisationUnits.id:eq:" + orgId + "&filter=userGroups.id:eq:qlEhuAA77gc",
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function(data) {
+            usersToSend = data.users;
+        },
+        error: function(data) {
+            alert("failed");
+        }
+    });
+}
+promise.done(function (data) {
     // console.log(JSON.stringify(data));
     usersOrgId = data.organisationUnits[0].id;
     getParentOrgId(usersOrgId);
     // console.log(getParentOrgId(orgId))
 });
+
+promise.then(function (data) {
+    getParentOrgId(data.organisationUnits[0].id)
+}).then(getUsersInParent(sendID));
