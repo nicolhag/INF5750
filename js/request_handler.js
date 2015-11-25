@@ -12,16 +12,16 @@ function sendCommodityOrder(dataToSend){
     });
 }
 
-function getListOfUsers(){
+function getListOfAllUsers(){
     $.ajax({
-        url: dhis2Instance + "/api/userGroups",
+        url: dhis2Instance + "/api/users",
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
         success: function (data) {
             var usrLst = $('#userList');
-            jQuery.each(data.userGroups, function() {
+            jQuery.each(data.users, function() {
                 usrLst.append(
                     $('<option></option>').val(this.id).html(this.name)
                 );

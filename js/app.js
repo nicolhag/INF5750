@@ -8,8 +8,7 @@ var requestOptions = {
 fetch('manifest.webapp', requestOptions)
     .then(parseJson)
     .then(getBaseUrlFromManifest)
-    .then(getListOfUsers);
-
+    .then(getListOfAllUsers);
 
 // deprecated
 function setUserID(){
