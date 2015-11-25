@@ -2,7 +2,7 @@ var dhis2Instance;
 
 function sendCommodityOrder(){
     $.ajax({
-        url: dhis2Instance + "/api/messageConversations",
+        url: "/api/messageConversations",
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
         },
@@ -22,7 +22,7 @@ function sendCommodityOrder(){
 
 function getListOfUsers(){
     $.ajax({
-        url: dhis2Instance + "/api/users",
+        url: "/api/users",
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
         },
