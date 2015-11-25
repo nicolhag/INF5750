@@ -1,17 +1,17 @@
 var dhis2Instance;
 var userID = "qlEhuAA77gc";
 
-function sendCommodityOrder(data){
+function sendCommodityOrder(dataToSend){
     $.ajax({
         url: dhis2Instance + "/api/messageConversations",
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
         },
         type: 'POST',
-        dataType: 'xml',
-        contentType: 'application/xml',
+        dataType: 'json',
+        contentType: 'application/json',
         processData: false,
-        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order submitted</subject><text>Ordering stocks on the following commodities: \n ' + data + '</text><userGroups><userGroup id="' + userID + '" /></userGroups></message>',
+        data: JSON.stringify({"subject": "Commodity order submitted","text": "Ordering stocks on the following commodities:\n" + dataToSend,"userGroups": [{"id": userID}]}),
         success: function (data){
             alert(JSON.stringify(data));
             $("#messageSent").html(JSON.stringify(data));
