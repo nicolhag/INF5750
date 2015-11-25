@@ -11,6 +11,7 @@ fetch('manifest.webapp', requestOptions)
     .then(getListOfUsers);
 
 
+// deprecated
 function setUserID(){
     userID = $( "#userList option:selected" ).val();
 }

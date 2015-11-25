@@ -3,32 +3,18 @@ var userID = "qlEhuAA77gc";
 
 function sendCommodityOrder(dataToSend){
     $.ajax({
-        url: "/api/messageConversations",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
-        },
+        url: dhis2Instance + "/api/messageConversations",
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
         data: JSON.stringify({"subject": "Commodity order submitted","text": "Ordering stocks on the following commodities:\n" + dataToSend,"userGroups": [{"id": userID}]}),
-        success: function (data){
-            alert(JSON.stringify(data));
-            $("#messageSent").html(JSON.stringify(data));
-        },
-        error: function(data){
-            alert(JSON.stringify(data));
-           $("#messageSent").html(JSON.stringify(data));
-        }
     });
 }
 
 function getListOfUsers(){
     $.ajax({
-        url: "/api/users",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
-        },
+        url: dhis2Instance + "/api/userGroups",
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
@@ -54,6 +40,11 @@ function getListOfUsers(){
             });
         }
     });
+}
+
+function getBaseUrlFromManifest(manifest) {
+	dhis2Instance = manifest.activities.dhis.href;
+    return manifest.activities.dhis.href;
 }
 
 function parseJson(rawResponse) {
