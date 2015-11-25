@@ -8,10 +8,9 @@ var requestOptions = {
 fetch('manifest.webapp', requestOptions)
     .then(parseJson)
     .then(getBaseUrlFromManifest)
-    .then(getListOfUsers)
-    .then(sendCommodityOrder);
+    .then(getListOfUsers);
 
 
-function printName(){
-    alert("Fant navnet: " + $( "#userList option:selected" ).text() + " med id: " + $( "#userList option:selected" ).val())
+function setUserID(){
+    userID = $( "#userList option:selected" ).val();
 }

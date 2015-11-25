@@ -1,4 +1,3 @@
-
 var elements = 1;
 
 //Function to add new form element when + is clicked.
@@ -19,7 +18,27 @@ function cancelItem(event) {
 	}
 }
 
+function getListOfAllCommodities(){
+    var res = "\n";
+    $('#bulk-order-list :input').each(function(index,element) {
+        if (index > 0){
+            if (index % 2 == 0){
+				if ($(element).val() != ""){
+					res += $(element).val() + "\n";
+				}
+            } else {
+				if ($(element).val() != ""){
+                	res += $(element).val() + " : ";
+				}
+            }
+        }
+    });
+    return res;
+}
+
+
 //POST FORM
 $("#send-order-button").click(function(e) {
+	sendCommodityOrder(getListOfAllCommodities());
 	$("#bulk-order-list").submit();
 });
