@@ -9,3 +9,8 @@ fetch('manifest.webapp', requestOptions)
     .then(parseJson)
     .then(getBaseUrlFromManifest)
     .then(getListOfUsers);
+
+
+function setUserID(){
+    userID = $( "#userList option:selected" ).val();
+}

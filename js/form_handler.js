@@ -19,21 +19,21 @@ function cancelItem(event) {
 }
 
 function getListOfAllCommodities(){
-    var a = "\n";
+    var res = "\n";
     $('#bulk-order-list :input').each(function(index,element) {
         if (index > 0){
             if (index % 2 == 0){
 				if ($(element).val() != ""){
-					a += $(element).val() + "\n";
+					res += $(element).val() + "\n";
 				}
             } else {
 				if ($(element).val() != ""){
-                	a += $(element).val() + " : ";
+                	res += $(element).val() + " : ";
 				}
             }
         }
     });
-    return a;
+    return res;
 }
 
 

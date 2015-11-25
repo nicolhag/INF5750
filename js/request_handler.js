@@ -1,5 +1,5 @@
 var dhis2Instance;
-var userID = "DXyJmlo9rge";
+var userID = "qlEhuAA77gc";
 
 function sendCommodityOrder(data){
     $.ajax({
@@ -11,7 +11,7 @@ function sendCommodityOrder(data){
         dataType: 'xml',
         contentType: 'application/xml',
         processData: false,
-        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order</subject><text>Ordering stocks on the following commodities: \n ' + data + '</text><users><user id="' + userID + '" /></users></message>',
+        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order submitted</subject><text>Ordering stocks on the following commodities: \n ' + data + '</text><userGroups><userGroup id="' + userID + '" /></userGroups></message>',
         success: function (data){
             alert(JSON.stringify(data));
             $("#messageSent").html(JSON.stringify(data));
@@ -25,7 +25,7 @@ function sendCommodityOrder(data){
 
 function getListOfUsers(){
     $.ajax({
-        url: dhis2Instance + "/api/users",
+        url: dhis2Instance + "/api/userGroups",
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
         },
@@ -35,7 +35,7 @@ function getListOfUsers(){
         processData: false,
         success: function (data) {
             var usrLst = $('#userList');
-            jQuery.each(data.users, function() {
+            jQuery.each(data.userGroups, function() {
                 usrLst.append(
                     $('<option></option>').val(this.id).html(this.name)
                 );
