@@ -30,12 +30,14 @@
                     <!--select id="userList" onchange="setUserID()">
 
                     </select-->
-
 					<fieldset id="commodity-form" class="commodity-form">
 						<label for="name" class="">Commodity name</label>
-						<input id="name" name="name[]" size="35" type="text" placeholder="Commodity name" required>
+						<input id="name" name="name[]" size="35" type="text" placeholder="Commodity name" required onkeyup="showResult(this.value)" autocomplete="off">
 						<label for="quantity" class="">Quantity</label>
 						<input id="quantity" name="quantity[]" type="number" value="1" required>
+						<ul id="searchResults">
+
+						</ul>
 						<a onclick="cancelItem(this);"class="cancel-item"><i class="fa fa-times"></i></a>
 					</fieldset>
 
@@ -60,6 +62,7 @@
 </html>
 
 <script src="js/form_handler.js"></script>
+<script src="js/commodity_search_handler.js"></script>
 <script src="js/request_handler.js"></script>
 <script src="js/app.js"></script>
 <script src="js/org_unit_finder.js"></script>
