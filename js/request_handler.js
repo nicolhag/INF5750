@@ -3,9 +3,6 @@ var dhis2Instance;
 function sendCommodityOrder(){
     $.ajax({
         url: dhis2Instance + "/api/messageConversations",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
-        },
         type: 'POST',
         dataType: 'xml',
         contentType: 'application/xml',
@@ -23,9 +20,6 @@ function sendCommodityOrder(){
 function getListOfUsers(){
     $.ajax({
         url: dhis2Instance + "/api/users",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", "Basic " + btoa("admin:district"));
-        },
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',

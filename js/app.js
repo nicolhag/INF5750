@@ -1,11 +1,4 @@
-var requestOptions = {
-    credentials: 'same-origin',
-    headers: {
-        Authorization: 'Basic ' + btoa('admin:district'),
-    },
-};
-
-fetch('manifest.webapp', requestOptions)
+fetch('manifest.webapp')
     .then(parseJson)
     .then(getBaseUrlFromManifest)
     .then(getListOfUsers)
