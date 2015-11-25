@@ -1,13 +1,22 @@
-function printOrgUnit() {
-    $.ajax({
+function getOwnOrgUnit() {
+    return $.ajax({
         url: "/api/me",
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
+    });
+}
+function getParentOrgId(orgId) {
+    $.ajax({
+        url: "/api/organisationUnits/" + orgId,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
         success: function (data) {
-            var orgId = data.organisationUnits[0].id;
-            alert(orgId);
+            parentOrgId = data.parent.id;
+            alert(parentOrgId);
         },
 
         error: function (data) {
@@ -15,5 +24,10 @@ function printOrgUnit() {
         }
     });
 }
+var promise = getOwnOrgUnit();
 
-printOrgUnit();
+promise.success(function (data) {
+    console.log(JSON.stringify(data));
+    var orgId = data.organisationUnits[0].id;
+    console.log(getParentOrgId(orgId))
+});
