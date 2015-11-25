@@ -1,7 +1,7 @@
 
 var elements = 1;
 
-//Function to add new form element when + is clicked. 
+//Function to add new form element when + is clicked.
 $("#add-form-button").click(function(){
 	newForm = $("#commodity-form").clone(); //cloning first form
 	newForm.find("input").val(""); //removing input text

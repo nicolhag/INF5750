@@ -31,14 +31,23 @@ function getListOfUsers(){
         contentType: 'application/json',
         processData: false,
         success: function (data) {
+            var usrLst = $('#userList');
             jQuery.each(data.users, function() {
-                $("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
+                usrLst.append(
+                    $('<option></option>').val(this.id).html(this.name)
+                );
+                //$("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
             });
 
         },
         error: function(data){
+
+            var usrLst = $('#userList');
             jQuery.each(data.users, function() {
-                $("#list").append('<li> Name: ' + this.name + ', id: ' + this.id + '</li>');
+                usrLst.append(
+                    $('<option></option>').val(this.id).html(this.name)
+                );
+                //$("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
             });
         }
     });
