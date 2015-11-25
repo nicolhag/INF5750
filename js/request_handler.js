@@ -7,7 +7,11 @@ function sendCommodityOrderToOrgUnit(dataToSend){
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
-        data: JSON.stringify({"subject": "Commodity order submitted","text": "Ordering stocks on the following commodities:\n" + dataToSend,"organisationUnits": [{"id": sendID}]}),
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "organisationUnits": [{"id": sendID}]
+        })
     });
 }
 
@@ -18,7 +22,26 @@ function sendCommodityOrderToUserGroup(dataToSend){
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
-        data: JSON.stringify({"subject": "Commodity order submitted","text": "Ordering stocks on the following commodities:\n" + dataToSend,"userGroups": [{"id": sendID}]}),
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "userGroups": [{"id": sendID}]
+        })
+    });
+}
+
+function sendCommodityOrderToUsers(dataToSend){
+    $.ajax({
+        url: "/api/messageConversations",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "users": [{"id": sendID}]
+        })
     });
 }
 
