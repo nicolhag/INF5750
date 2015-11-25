@@ -25,6 +25,7 @@ function getParentOrgId(orgId) {
     });
 }
 var promise = getOwnOrgUnit();
+
 promise.success(function (data) {
     console.log(JSON.stringify(data));
     var orgId = data.organisationUnits[0].id;

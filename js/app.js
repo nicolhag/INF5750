@@ -1,6 +1,4 @@
 fetch('manifest.webapp')
-    .then(parseJson)
-    .then(getBaseUrlFromManifest)
     .then(getListOfAllUsers);
 
 // deprecated

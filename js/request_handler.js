@@ -3,7 +3,7 @@ var userID = "qlEhuAA77gc";
 
 function sendCommodityOrder(dataToSend){
     $.ajax({
-        url: dhis2Instance + "/api/messageConversations",
+        url: "/api/messageConversations",
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -14,7 +14,7 @@ function sendCommodityOrder(dataToSend){
 
 function getListOfAllUsers(){
     $.ajax({
-        url: dhis2Instance + "/api/users",
+        url: "/api/users",
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
@@ -27,10 +27,8 @@ function getListOfAllUsers(){
                 );
                 //$("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
             });
-
         },
         error: function(data){
-
             var usrLst = $('#userList');
             jQuery.each(data.users, function() {
                 usrLst.append(
@@ -40,13 +38,4 @@ function getListOfAllUsers(){
             });
         }
     });
-}
-
-function getBaseUrlFromManifest(manifest) {
-	dhis2Instance = manifest.activities.dhis.href;
-    return manifest.activities.dhis.href;
-}
-
-function parseJson(rawResponse) {
-    return rawResponse.json();
 }
