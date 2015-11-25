@@ -20,16 +20,14 @@ function cancelItem(event) {
 
 function getListOfAllCommodities(){
     var res = "\n";
-    $('#bulk-order-list :input').each(function(index,element) {
-		if (index > 0){
-			if (index % 2 == 0){
-				if ($(element).val() != ""){
-					res += $(element).val() + "\n";
-				}
-			} else {
-				if ($(element).val() != ""){
-					res += $(element).val() + " : ";
-				}
+    $('#bulk-order-list :input').each(function(index,element){
+		if (index % 2 == 1){
+			if ($(element).val() != ""){
+				res += $(element).val() + "\n";
+			}
+		} else {
+			if ($(element).val() != ""){
+				res += $(element).val() + " : ";
 			}
 		}
     });
@@ -39,6 +37,10 @@ function getListOfAllCommodities(){
 
 //POST FORM
 $("#send-order-button").click(function(e) {
-	sendCommodityOrder(getListOfAllCommodities());
+	if (sendToOrgUnit){
+		sendCommodityOrderToOrgUnit(getListOfAllCommodities());
+	} else {
+		sendCommodityOrderToUserGroup(getListOfAllCommodities());
+	}
 	$("#bulk-order-list").submit();
 });
