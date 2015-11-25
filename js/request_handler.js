@@ -1,6 +1,7 @@
 var dhis2Instance;
+var userID = "DXyJmlo9rge";
 
-function sendCommodityOrder(){
+function sendCommodityOrder(data){
     $.ajax({
         url: dhis2Instance + "/api/messageConversations",
         beforeSend: function(xhr) {
@@ -10,11 +11,13 @@ function sendCommodityOrder(){
         dataType: 'xml',
         contentType: 'application/xml',
         processData: false,
-        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order</subject><text>Ordering stocks on the following commodities:</text><users><user id="DXyJmlo9rge" /></users></message>',
+        data: '<message xmlns="http://dhis2.org/schema/dxf/2.0"><subject>Commodity order</subject><text>Ordering stocks on the following commodities: \n ' + data + '</text><users><user id="' + userID + '" /></users></message>',
         success: function (data){
+            alert(JSON.stringify(data));
             $("#messageSent").html(JSON.stringify(data));
         },
         error: function(data){
+            alert(JSON.stringify(data));
            $("#messageSent").html(JSON.stringify(data));
         }
     });
