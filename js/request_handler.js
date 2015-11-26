@@ -1,20 +1,60 @@
-var sendID = "qlEhuAA77gc";
 var usersToSend;
+var userGroup = "Logistics";
 
-function sendCommodityOrderToUserGroup(dataToSend){
-    $.ajax({
-        url: "/api/messageConversations",
-        type: 'POST',
+var promise = $.ajax({
+    url: "/api/me",
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+});
+
+function getParentOrgId(orgId) {
+    return $.ajax({
+        url: "/api/organisationUnits/" + orgId,
+        type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
-        processData: false,
-        data: JSON.stringify({
-            "subject": "Commodity order submitted",
-            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
-            "userGroups": [{"id": sendID}]
-        })
+        error: function (data) {
+            alert(JSON.stringify(data));
+        }
     });
 }
+
+function getUsersInParent(data) {
+    return $.ajax({
+        url: "/api/users?filter=organisationUnits.id:eq:" + data + "&filter=userGroups.name:like:" + userGroup,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function(data) {
+            console.log(data);
+            usersToSend = data.users;
+            console.log(usersToSend);
+        },
+        error: function() {
+            alert("failed");
+        }
+    });
+}
+
+function getOrgunitIdFromOU(data) {
+    if (data.parent==null){
+        // Initializes to the userGroup called "EPI Stock Completeness Notification Recipients"
+        console.log("No organisationUnit found above you. Will therefore send to the userGroup EPI Stock Completeness Notification Recipients");
+        return data.id;
+    } else {
+        console.log("Found organisationUnit above you.");
+        return data.parent.id;
+    }
+}
+
+promise.then(function (data) {
+    getParentOrgId(data.organisationUnits[0].id)
+        .then(function (data) {
+            var orgUnitID = getOrgunitIdFromOU(data);
+            getUsersInParent(orgUnitID)
+        });
+})
 
 function sendCommodityOrderToUsers(dataToSend){
     $.ajax({
@@ -30,32 +70,4 @@ function sendCommodityOrderToUsers(dataToSend){
         })
     });
     console.log("test");
-}
-
-function getListOfAllUsers(){
-    $.ajax({
-        url: "/api/users",
-        type: 'GET',
-        dataType: 'json',
-        contentType: 'application/json',
-        processData: false,
-        success: function (data) {
-            var usrLst = $('#userList');
-            jQuery.each(data.users, function() {
-                usrLst.append(
-                    $('<option></option>').val(this.id).html(this.name)
-                );
-                //$("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
-            });
-        },
-        error: function(data){
-            var usrLst = $('#userList');
-            jQuery.each(data.users, function() {
-                usrLst.append(
-                    $('<option></option>').val(this.id).html(this.name)
-                );
-                //$("#list").append('<li style="font-size:20px;"> Name: ' + this.name + ', id: ' + this.id + '</li>');
-            });
-        }
-    });
 }
