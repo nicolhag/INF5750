@@ -1,4 +1,5 @@
-var allCommodities = ["BCG", "Malarone", "Typhoid", "Meningococcal"];
+//init
+var allCommodities = ["BCG", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
 var lastSearchResult = [];
 lastSearchResult[0] = allCommodities;
 var previousInputLength = 0;
@@ -46,7 +47,17 @@ function showResults(list) {
 	if (!(list.length == allCommodities.length)) {
 		$("#searchResults").css({"display": "block"})
 		for (var i = 0; i < 4 && i < list.length; i++) {
-			$("#searchResults").append("<li>" + list[i] + "</li>");
+			$("#searchResults").append('<li class="resultItem">' + list[i] + "</li>");
 		}
 	}
+
+	$(".resultItem").click(function(e){
+		resultClickHandler(e.target.innerHTML);
+	});
+
+}
+
+function resultClickHandler(value) {
+	$("#name").val(value);
+	$("#searchResults").css({"display": "none"})
 }
