@@ -1,15 +1,50 @@
-var dhis2Instance;
-var userID = "qlEhuAA77gc";
+var sendID = "qlEhuAA77gc";
+var usersToSend = [];
 
-function sendCommodityOrder(dataToSend){
+function sendCommodityOrderToOrgUnit(dataToSend){
     $.ajax({
         url: "/api/messageConversations",
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
-        data: JSON.stringify({"subject": "Commodity order submitted","text": "Ordering stocks on the following commodities:\n" + dataToSend,"userGroups": [{"id": userID}]}),
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "organisationUnits": [{"id": sendID}]
+        })
     });
+}
+
+function sendCommodityOrderToUserGroup(dataToSend){
+    $.ajax({
+        url: "/api/messageConversations",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "userGroups": [{"id": sendID}]
+        })
+    });
+}
+
+function sendCommodityOrderToUsers(dataToSend){
+    $.ajax({
+        url: "/api/messageConversations",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+            "subject": "Commodity order submitted",
+            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
+            "users": usersToSend
+        })
+    });
+    console.log("test");
 }
 
 function getListOfAllUsers(){

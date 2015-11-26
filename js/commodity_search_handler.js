@@ -7,7 +7,7 @@ var previousInputLength = 0;
 function showResult(str) {
 	var index = 0;
 	str = str.toLowerCase();
-	
+
 	if (str.length == 0) {
 		index = 0;
 	} else if (str.length < previousInputLength) {
@@ -16,19 +16,19 @@ function showResult(str) {
 	} else {
 		index = str.length;
 		previousInputLength = str.length;
-	
-		
+
+
 		lastSearchResult[index] = filterByLetterOnIndex(lastSearchResult[index -1], str.length - 1, str.charAt(str.length - 1));
 	}
 	showResults(lastSearchResult[index]);
 	//console.log(lastSearchResult[index]);
-	
+
 }
 
 function filterByLetterOnIndex(list, index, letter) {
 	var subList = [];
 	var elements = 0;
-	
+
 	for (var i = 0; i < list.length; i++) {
 		if(list[i].toLowerCase().charAt(index) == letter) {
 			subList[elements++] = list[i];
@@ -38,7 +38,7 @@ function filterByLetterOnIndex(list, index, letter) {
 }
 
 function showResults(list) {
-	
+
 	//init position of suggestion box
 	var boxPos = $("#name").position();
 	$("#searchResults").css({"left": boxPos.left + 1, "top": boxPos.top + 22})
