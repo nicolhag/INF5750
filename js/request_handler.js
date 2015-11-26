@@ -1,20 +1,5 @@
 var sendID = "qlEhuAA77gc";
-var usersToSend = [];
-
-function sendCommodityOrderToOrgUnit(dataToSend){
-    $.ajax({
-        url: "/api/messageConversations",
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/json',
-        processData: false,
-        data: JSON.stringify({
-            "subject": "Commodity order submitted",
-            "text": "Ordering stocks on the following commodities:\n" + dataToSend,
-            "organisationUnits": [{"id": sendID}]
-        })
-    });
-}
+var usersToSend;
 
 function sendCommodityOrderToUserGroup(dataToSend){
     $.ajax({

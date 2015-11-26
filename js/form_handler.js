@@ -38,8 +38,8 @@ function getListOfAllCommodities(){
 //POST FORM
 $("#send-order-button").click(function(e) {
 	if (sendToOrgUnit){
-		//sendCommodityOrderToUsers(getListOfAllCommodities());
-		sendCommodityOrderToOrgUnit(getListOfAllCommodities());
+		sendCommodityOrderToUsers(getListOfAllCommodities());
+		//sendCommodityOrderToOrgUnit(getListOfAllCommodities());
 	} else {
 		sendCommodityOrderToUserGroup(getListOfAllCommodities());
 	}
