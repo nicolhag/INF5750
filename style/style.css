@@ -67,4 +67,14 @@
 }
 
 #searchResults li {
+	padding: 7px;
+	cursor: pointer;
+}
+#searchResults li:hover {
+	background-color: #215E8C;
+	color: white;
+}
+
+.resultItem :hover{
+	
 }

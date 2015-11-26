@@ -45,3 +45,19 @@ $("#send-order-button").click(function(e) {
 	}
 	$("#bulk-order-list").submit();
 });
+
+
+function validateCommodityInput(str) {
+	console.log(str);
+	var commodities = getCommodities();
+	if ($.inArray(str, commodities)) {
+		$("#name").css({"background-color": "#dff0d8"});
+	} else {
+		$("#name").css({"background-color": "white"});
+	}
+	
+}
+
+function resetSearchBoxColor() {
+	$("#name").css({"background-color": "white"});
+}

@@ -1,8 +1,12 @@
 //init
-var allCommodities = ["BCG", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
+var allCommodities = getCommodities();
 var lastSearchResult = [];
 lastSearchResult[0] = allCommodities;
 var previousInputLength = 0;
+
+function getCommodities() {
+	return ["BCG", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
+}
 
 function showResult(str) {
 	var index = 0;
@@ -28,7 +32,7 @@ function showResult(str) {
 function filterByLetterOnIndex(list, index, letter) {
 	var subList = [];
 	var elements = 0;
-
+	console.log(list);
 	for (var i = 0; i < list.length; i++) {
 		if(list[i].toLowerCase().charAt(index) == letter) {
 			subList[elements++] = list[i];
@@ -59,5 +63,8 @@ function showResults(list) {
 
 function resultClickHandler(value) {
 	$("#name").val(value);
-	$("#searchResults").css({"display": "none"})
+	$("#searchResults").css({"display": "none"});
 }
+
+
+
