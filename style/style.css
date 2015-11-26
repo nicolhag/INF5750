@@ -13,7 +13,7 @@
 }
 
 #bulk-order-list {
-	
+
 	margin-top: 20px;
 	padding: 2px 0 30px 0;
 }
@@ -48,7 +48,7 @@
 }
 
 #title-header {
-	
+
 	display: inline-block;
 	margin: 0 0 0 20px;
 	padding: 10px 0 0 0;
@@ -76,5 +76,13 @@
 }
 
 .resultItem :hover{
-	
+}
+
+#display-message{
+	padding: 20px;
+	background-color:#449d44;
+	text-align: center;
+	color:white;
+	font-size:22px;
+	margin-bottom:10px;
 }

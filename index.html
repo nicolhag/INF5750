@@ -26,10 +26,8 @@
 			<div class="container">
 
 				<form id="bulk-order-list" type="POST" onsubmit="">
-					<h2>Order commodities</h2>
-                    <!--select id="userList" onchange="setUserID()">
-
-                    </select-->
+                    <h2>Order commodities</h2>
+                    <div id="display-message"> Message successfully sent! </div>
 					<fieldset id="commodity-form" class="commodity-form">
 						<label for="name" class="">Commodity name</label>
 						<input id="name" name="name[]" size="35" type="text" placeholder="Commodity name" required onkeyup="showResult(this.value)" autocomplete="off" onblur="validateCommodityInput(this.value)" onclick="resetSearchBoxColor()">
