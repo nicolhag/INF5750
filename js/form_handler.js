@@ -34,15 +34,9 @@ function getListOfAllCommodities(){
     return res;
 }
 
-
 //POST FORM
-$("#send-order-button").click(function(e) {
-	if (sendToOrgUnit){
-		sendCommodityOrderToUsers(getListOfAllCommodities());
-		//sendCommodityOrderToOrgUnit(getListOfAllCommodities());
-	} else {
-		sendCommodityOrderToUserGroup(getListOfAllCommodities());
-	}
+$("#send-order-button").click(function() {
+	sendCommodityOrderToUsers(getListOfAllCommodities());
 	$("#bulk-order-list").submit();
 });
 
