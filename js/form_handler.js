@@ -33,9 +33,21 @@ function getListOfAllCommodities(){
     });
     return res;
 }
+function clearForms(){
+	newForm = $("#commodity-form").clone(); //cloning first form
+	newForm.find("input").val(""); //removing input text
+	$(".commodity-form").remove();
+	$("#bulk-order-list").append(newForm);
+}
 
 //POST FORM
 $("#send-order-button").click(function() {
 	sendCommodityOrderToUsers(getListOfAllCommodities());
-	$("#bulk-order-list").submit();
+	clearForms();
+	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
+});
+
+
+$(document).ready(function() {
+    $("#display-message").hide();
 });
