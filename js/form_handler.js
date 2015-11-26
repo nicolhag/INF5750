@@ -40,28 +40,29 @@ function clearForms(){
 	$("#bulk-order-list").append(newForm);
 }
 
-//POST FORM
+//POST FORM /venter på bedre metodenavn fra nicolai
 $("#send-order-button").click(function() {
 	sendCommodityOrderToUsers(getListOfAllCommodities());
 	clearForms();
 	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
 });
 
-
+// Venter på kommentar fra nicolai
 $(document).ready(function() {
     $("#display-message").hide();
 });
 
 
 function validateCommodityInput(str) {
-	console.log(str);
+	
 	var commodities = getCommodities();
-	if ($.inArray(str, commodities)) {
+	console.log(commodities);
+	if ($.inArray(str, commodities) > 0) {
 		$("#name").css({"background-color": "#dff0d8"});
 	} else {
-		$("#name").css({"background-color": "white"});
+		$("#name").css({"background-color": "#f2dede"});
 	}
-	
+	//$("#searchResults").css({"display": "none"});
 }
 
 function resetSearchBoxColor() {
