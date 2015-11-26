@@ -15,7 +15,7 @@ function getParentOrgId(orgId) {
         dataType: 'json',
         contentType: 'application/json',
         error: function (data) {
-            alert(JSON.stringify(data));
+            console.log(JSON.stringify(data));
         }
     });
 }
@@ -32,18 +32,18 @@ function getUsersInParent(data) {
             console.log(usersToSend);
         },
         error: function() {
-            alert("failed");
+            conslole.log(JSON.stringify(data));
         }
     });
 }
 
 function getOrgunitIdFromOU(data) {
-    if (data.parent==null){
+    if (data.parent == null){
         // Initializes to the userGroup called "EPI Stock Completeness Notification Recipients"
-        console.log("No organisationUnit found above you. Will therefore send to the userGroup EPI Stock Completeness Notification Recipients");
+        console.log("No OU found above you. Will therefore send to the specified userGroup in own OU");
         return data.id;
     } else {
-        console.log("Found organisationUnit above you.");
+        console.log("Found OU above you.");
         return data.parent.id;
     }
 }
@@ -62,12 +62,10 @@ function sendCommodityOrderToUsers(dataToSend){
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
-        processData: false,
         data: JSON.stringify({
             "subject": "Commodity order submitted",
             "text": "Ordering stocks on the following commodities:\n" + dataToSend,
             "users": usersToSend
         })
     });
-    console.log("test");
 }
