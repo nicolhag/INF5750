@@ -1,12 +1,21 @@
 var elements = 1;
 
+// Hides the message dialogue when webapp initializes
+$(document).ready(function() {
+    $("#display-message").hide();
+});
+
+$("#send-order-button").click(postOrder);
+
 //Function to add new form element when + is clicked.
-$("#add-form-button").click(function(){
+$("#add-form-button").click(addNewForm);
+
+function addNewForm(){
 	newForm = $("#commodity-form").clone(); //cloning first form
 	newForm.find("input").val(""); //removing input text
 	$("#bulk-order-list").append(newForm); //appending on the end of list
 	elements++;
-});
+}
 
 //remove or clear inputs item when cancel-button is clicked
 function cancelItem(event) {
@@ -16,6 +25,43 @@ function cancelItem(event) {
 	} else { //clear input boxes
 		$("#commodity-form").find("input").val(""); //removing input text
 	}
+}
+
+function clearForms(){
+	newForm = $("#commodity-form").clone(); //cloning first form
+	newForm.find("input").val(""); //removing input text
+	$(".commodity-form").remove();
+	$("#bulk-order-list").append(newForm);
+}
+
+function postOrder(){
+
+	if (usersToSend == undefined || usersToSend == null || usersToSend.length == 0){
+		$("#display-message").html("Failed: No recipients!");
+		$("#display-message").removeClass("messageSuccess");
+		$("#display-message").addClass("messageFailure");
+	} else {
+		sendCommodityOrderToUsers(getListOfAllCommodities());
+		$("#display-message").html("Message sent!");
+		$("#display-message").removeClass("messageFailure");
+		$("#display-message").addClass("messageSuccess");
+	}
+
+	clearForms();
+
+	// Displays a popup-message
+	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
+}
+
+function validateCommodityInput(str) {
+	var commodities = getCommodities();
+	console.log(commodities);
+	if ($.inArray(str, commodities) > 0) {
+		$("#name").css({"background-color": "#dff0d8"});
+	} else {
+		$("#name").css({"background-color": "#f2dede"});
+	}
+	//$("#searchResults").css({"display": "none"});
 }
 
 function getListOfAllCommodities(){
@@ -32,44 +78,6 @@ function getListOfAllCommodities(){
 		}
     });
     return res;
-}
-function clearForms(){
-	newForm = $("#commodity-form").clone(); //cloning first form
-	newForm.find("input").val(""); //removing input text
-	$(".commodity-form").remove();
-	$("#bulk-order-list").append(newForm);
-}
-
-//POST FORM /venter på bedre metodenavn fra nicolai
-$("#send-order-button").click(function() {
-	sendCommodityOrderToUsers(getListOfAllCommodities());
-	usersToSend = [];
-	if (usersToSend == undefined || usersToSend == null || usersToSend.length == 0){
-		$("#display-message").html("TEST");
-    	alert("Tom sak!!");
-	} else {
-		alert(JSON.stringify(usersToSend));
-	}
-	clearForms();
-	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
-});
-
-// Venter på kommentar fra nicolai
-$(document).ready(function() {
-    $("#display-message").hide();
-});
-
-
-function validateCommodityInput(str) {
-
-	var commodities = getCommodities();
-	console.log(commodities);
-	if ($.inArray(str, commodities) > 0) {
-		$("#name").css({"background-color": "#dff0d8"});
-	} else {
-		$("#name").css({"background-color": "#f2dede"});
-	}
-	//$("#searchResults").css({"display": "none"});
 }
 
 function resetSearchBoxColor() {

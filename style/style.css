@@ -80,9 +80,16 @@
 
 #display-message{
 	padding: 20px;
-	background-color:#449d44;
 	text-align: center;
 	color:white;
 	font-size:22px;
 	margin-bottom:10px;
+}
+
+.messageSuccess{
+	background-color:#449d44;
+}
+
+.messageFailure{
+	background-color:red;
 }

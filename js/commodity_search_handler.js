@@ -1,4 +1,4 @@
-//init
+
 var allCommodities = getCommodities();
 var lastSearchResult = [];
 lastSearchResult[0] = allCommodities;
@@ -20,13 +20,10 @@ function showResult(str) {
 	} else {
 		index = str.length;
 		previousInputLength = str.length;
-
-
 		lastSearchResult[index] = filterByLetterOnIndex(lastSearchResult[index -1], str.length - 1, str.charAt(str.length - 1));
 	}
 	showResults(lastSearchResult[index]);
 	//console.log(lastSearchResult[index]);
-
 }
 
 function filterByLetterOnIndex(list, index, letter) {
@@ -58,13 +55,9 @@ function showResults(list) {
 	$(".resultItem").click(function(e){
 		resultClickHandler(e.target.innerHTML);
 	});
-
 }
 
 function resultClickHandler(value) {
 	$("#name").val(value);
 	$("#searchResults").css({"display": "none"});
 }
-
-
-

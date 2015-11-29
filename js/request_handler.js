@@ -1,6 +1,7 @@
 var usersToSend;
-var userGroup = "Logistics";
+var userGroup = "Logistics"; // This usergroup needs to be present
 
+// Collects information about the users (e.g. organisational unit)
 var promise = $.ajax({
     url: "/api/me",
     type: 'GET',
@@ -8,6 +9,7 @@ var promise = $.ajax({
     contentType: 'application/json',
 });
 
+// Get the organisational unit at the level above the user
 function getParentOrgId(orgId) {
     return $.ajax({
         url: "/api/organisationUnits/" + orgId,
@@ -20,6 +22,7 @@ function getParentOrgId(orgId) {
     });
 }
 
+// Get all the users in the organisational unit above
 function getUsersInParent(data) {
     return $.ajax({
         url: "/api/users?filter=organisationUnits.id:eq:" + data + "&filter=userGroups.name:like:" + userGroup,
@@ -56,6 +59,7 @@ promise.then(function (data) {
         });
 })
 
+// Sends a message (mail) to the generated list of users
 function sendCommodityOrderToUsers(dataToSend){
     $.ajax({
         url: "/api/messageConversations",
