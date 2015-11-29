@@ -43,6 +43,13 @@ function clearForms(){
 //POST FORM /venter på bedre metodenavn fra nicolai
 $("#send-order-button").click(function() {
 	sendCommodityOrderToUsers(getListOfAllCommodities());
+	usersToSend = [];
+	if (usersToSend == undefined || usersToSend == null || usersToSend.length == 0){
+		$("#display-message").html("TEST");
+    	alert("Tom sak!!");
+	} else {
+		alert(JSON.stringify(usersToSend));
+	}
 	clearForms();
 	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
 });
@@ -54,7 +61,7 @@ $(document).ready(function() {
 
 
 function validateCommodityInput(str) {
-	
+
 	var commodities = getCommodities();
 	console.log(commodities);
 	if ($.inArray(str, commodities) > 0) {
