@@ -11,8 +11,9 @@ $("#send-order-button").click(postOrder);
 $("#add-form-button").click(addNewForm);
 
 function addNewForm(){
-	newForm = $("#commodity-form").clone(); //cloning first form
-	newForm.find("input").val(""); //removing input text
+	newForm = $("#commodity-form").clone(); //cloning first form section
+	newForm.find("#name").val(""); //removing input text
+	newForm.find("#quantity").val("1");
 	$("#bulk-order-list").append(newForm); //appending on the end of list
 	elements++;
 }
@@ -28,8 +29,9 @@ function cancelItem(event) {
 }
 
 function clearForms(){
-	newForm = $("#commodity-form").clone(); //cloning first form
-	newForm.find("input").val(""); //removing input text
+	newForm = $("#commodity-form").clone(); //cloning first form section
+	newForm.find("#name").val(""); //removing input text
+	newForm.find("#quantity").val("1");
 	$(".commodity-form").remove();
 	$("#bulk-order-list").append(newForm);
 }
@@ -50,16 +52,17 @@ function postOrder(){
 	clearForms();
 
 	// Displays a popup-message
-	$("#display-message").fadeIn(1000).delay(500).fadeOut(1000);
+	$("#display-message").fadeIn(1000).delay(5000).fadeOut(1000);
 }
 
-function validateCommodityInput(str) {
+function validateCommodityInput(searchBox) {
+	var str = searchBox.value;
 	var commodities = getCommodities();
-	console.log(commodities);
+	
 	if ($.inArray(str, commodities) > 0) {
-		$("#name").css({"background-color": "#dff0d8"});
+		$(searchBox).css({"background-color": "#dff0d8"});
 	} else {
-		$("#name").css({"background-color": "#f2dede"});
+		$(searchBox).css({"background-color": "#f2dede"});
 	}
 	//$("#searchResults").css({"display": "none"});
 }

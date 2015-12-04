@@ -1,14 +1,17 @@
-
+//init
 var allCommodities = getCommodities();
 var lastSearchResult = [];
 lastSearchResult[0] = allCommodities;
 var previousInputLength = 0;
 
 function getCommodities() {
-	return ["BCG", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
+	//In a real setting this would be returned from the DHIS2 database. Maybe through the API in json. 
+	return ["BCG", "Nicolai", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
 }
 
-function showResult(str) {
+//Controlling the search suggestions. Is called when text changes in one of the search boxes. 
+function showResult(searchBox) {
+	var str = searchBox.value;
 	var index = 0;
 	str = str.toLowerCase();
 
@@ -20,31 +23,35 @@ function showResult(str) {
 	} else {
 		index = str.length;
 		previousInputLength = str.length;
+
 		lastSearchResult[index] = filterByLetterOnIndex(lastSearchResult[index -1], str.length - 1, str.charAt(str.length - 1));
 	}
-	showResults(lastSearchResult[index]);
-	//console.log(lastSearchResult[index]);
+	showResults(searchBox, lastSearchResult[index]);
 }
 
+//Search algorithm. Takes a set, returns all elements in set that starts on specified letter.
 function filterByLetterOnIndex(list, index, letter) {
 	var subList = [];
 	var elements = 0;
-	console.log(list);
-	for (var i = 0; i < list.length; i++) {
+	
+	
+	for (var i = 0; list != null && i < list.length; i++) {
 		if(list[i].toLowerCase().charAt(index) == letter) {
 			subList[elements++] = list[i];
 		}
 	}
+	
 	return subList;
 }
 
-function showResults(list) {
+// Updates the suggestion list. Both content and the position of the div. 
+function showResults(searchBox, list) {
 
-	//init position of suggestion box
-	var boxPos = $("#name").position();
+	//init position of suggestion box, based on the searchBox in use
+	var boxPos = searchBox.getBoundingClientRect();
 	$("#searchResults").css({"left": boxPos.left + 1, "top": boxPos.top + 22})
-	//clear old search results
-	$("#searchResults").html("");
+	
+	$("#searchResults").html(""); //clear old search results
 	if (!(list.length == allCommodities.length)) {
 		$("#searchResults").css({"display": "block"})
 		for (var i = 0; i < 4 && i < list.length; i++) {
@@ -53,11 +60,17 @@ function showResults(list) {
 	}
 
 	$(".resultItem").click(function(e){
-		resultClickHandler(e.target.innerHTML);
+		resultClickHandler(searchBox, e.target.innerHTML);
 	});
+
 }
 
-function resultClickHandler(value) {
-	$("#name").val(value);
+//Handles click on the suggestions. 
+function resultClickHandler(searchBox, value) {
+	searchBox.value = value;
 	$("#searchResults").css({"display": "none"});
+	validateCommodityInput(searchBox);
 }
+
+
+
