@@ -14,6 +14,7 @@ function addNewForm(){
 	newForm = $("#commodity-form").clone(); //cloning first form section
 	newForm.find("#name").val(""); //removing input text
 	newForm.find("#quantity").val("1");
+	resetSearchBoxColor(newForm.find("#name"));
 	$("#bulk-order-list").append(newForm); //appending on the end of list
 	elements++;
 }
@@ -55,16 +56,17 @@ function postOrder(){
 	$("#display-message").fadeIn(1000).delay(5000).fadeOut(1000);
 }
 
+//Validating the input in a searchBox. Gives the box green color if input is in list of commodities. Else: red. 
 function validateCommodityInput(searchBox) {
 	var str = searchBox.value;
 	var commodities = getCommodities();
-	
-	if ($.inArray(str, commodities) > 0) {
+
+	if ($.inArray(str, commodities) >= 0) {
 		$(searchBox).css({"background-color": "#dff0d8"});
 	} else {
 		$(searchBox).css({"background-color": "#f2dede"});
 	}
-	//$("#searchResults").css({"display": "none"});
+
 }
 
 function getListOfAllCommodities(){
@@ -83,6 +85,6 @@ function getListOfAllCommodities(){
     return res;
 }
 
-function resetSearchBoxColor() {
-	$("#name").css({"background-color": "white"});
+function resetSearchBoxColor(searchBox) {
+	$(searchBox).css({"background-color": "white"});
 }

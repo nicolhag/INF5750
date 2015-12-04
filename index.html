@@ -30,7 +30,7 @@
                     <div id="display-message"> Message successfully sent! </div>
 					<fieldset id="commodity-form" class="commodity-form">
 						<label for="name" class="">Commodity name</label>
-						<input id="name" name="name[]" size="35" type="text" placeholder="Commodity name" required onkeyup="showResult(this)" autocomplete="off" onblur="validateCommodityInput(this)" onclick="resetSearchBoxColor()">
+						<input id="name" name="name[]" size="35" type="text" placeholder="Commodity name" required onkeyup="showResult(this)" autocomplete="off" onblur="validateCommodityInput(this)" onclick="resetSearchBoxColor(this)">
 						<label for="quantity" class="">Quantity</label>
 						<input id="quantity" name="quantity[]" type="number" value="1" required>
 						<ul id="searchResults">
