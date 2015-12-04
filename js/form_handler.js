@@ -38,19 +38,23 @@ function clearForms(){
 }
 
 function postOrder(){
-
-	if (usersToSend == undefined || usersToSend == null || usersToSend.length == 0){
+	
+	if (!validateAllCommodityInput()) {
+		$("#display-message").html("Some of the commodities defined does not exist!");
+		$("#display-message").removeClass("messageSuccess");
+		$("#display-message").addClass("messageFailure");
+	} else if (usersToSend == undefined || usersToSend == null || usersToSend.length == 0){
 		$("#display-message").html("Failed: No recipients!");
 		$("#display-message").removeClass("messageSuccess");
 		$("#display-message").addClass("messageFailure");
+		clearForms();
 	} else {
 		sendCommodityOrderToUsers(getListOfAllCommodities());
 		$("#display-message").html("Message sent!");
 		$("#display-message").removeClass("messageFailure");
 		$("#display-message").addClass("messageSuccess");
+		clearForms();
 	}
-
-	clearForms();
 
 	// Displays a popup-message
 	$("#display-message").fadeIn(1000).delay(5000).fadeOut(1000);
@@ -63,9 +67,23 @@ function validateCommodityInput(searchBox) {
 
 	if ($.inArray(str, commodities) >= 0) {
 		$(searchBox).css({"background-color": "#dff0d8"});
+		return true;
 	} else {
 		$(searchBox).css({"background-color": "#f2dede"});
+		return false;
 	}
+
+}
+
+function validateAllCommodityInput() {
+	var valid = true;
+	$(".commodityNameInput").each(function(index) {
+		if (!validateCommodityInput(this)) {
+			valid = false;
+		}
+	});
+	
+	return valid;
 
 }
 
@@ -88,3 +106,5 @@ function getListOfAllCommodities(){
 function resetSearchBoxColor(searchBox) {
 	$(searchBox).css({"background-color": "white"});
 }
+
+
