@@ -6,7 +6,7 @@ var previousInputLength = 0;
 
 function getCommodities() {
 	//In a real setting this would be returned from the DHIS2 database. Maybe through the API in json. 
-	return ["BCG", "Nicolai", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
+	return ["BCG", "Malarone", "Typhoid", "Meningococcal", "Measles", "Pneumococcal", "Yellow fever", "Dateiphtheria", "Rabies", "Rubella", "Twinrix", "Tetanus", "Hepatitis A", "Hepatitis B"];
 }
 
 //Controlling the search suggestions. Is called when text changes in one of the search boxes. 
